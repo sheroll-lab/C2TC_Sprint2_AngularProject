@@ -3,26 +3,26 @@
     <div class="">
       <div class="shadow w-20 p-5 position-absolute top-50 start-50 translate-middle">
         <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
-          <h4 class="display-6 text-center py-2">Shop Owner Database</h4>
+          <h4 class="display-6 text-center py-2">Admin Database</h4>
           
           <div class="">
-            <label for="ownername">Name</label>
+            <label for="department">Department</label>
             <div class="">
-              <input id="ownername" required #ownername="ngModel" ngModel name="ownername" type="text"
-                class="form-control" placeholder="Enter your name">
-              <div *ngIf="ownername.invalid && ownername.touched">
-                <small class="text-danger" *ngIf="ownername.errors?.['required']">Required</small>
+              <input id="department" required #department="ngModel" ngModel name="department" type="text"
+                class="form-control" placeholder="Enter your department">
+              <div *ngIf="department.invalid && department.touched">
+                <small class="text-danger" *ngIf="department.errors?.['required']">Required</small>
               </div>
             </div>
           </div><br>
           
           <div class="">
-            <label for="address">Address</label>
+            <label for="teacher">Teacher</label>
             <div class="">
-              <input id="address" required #address="ngModel" ngModel name="address" type="text"
-                class="form-control" placeholder="Enter your address">
-              <div *ngIf="address.invalid && address.touched">
-                <small class="text-danger" *ngIf="address.errors?.['required']">Required</small>
+              <input id="teacher" required #teacher="ngModel" ngModel name="teacher" type="text"
+                class="form-control" placeholder="Enter your teacher">
+              <div *ngIf="teacher.invalid && teacher.touched">
+                <small class="text-danger" *ngIf="teacher.errors?.['required']">Required</small>
               </div>
             </div>
           </div><br>
@@ -40,19 +40,19 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>Name</th>
-          <th>Address</th>
+          <th>Department</th>
+          <th>Teacher</th>
           <th>Edit</th>
           <th>Delete</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let owner of ownerDetails">
-          <td>{{owner.ownerid}}</td>
-          <td>{{owner.ownername}}</td>
-          <td>{{owner.address}}</td>
-          <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(owner)">Edit</button></td>
-          <td><button type="button" class="btn btn-danger" (click)="deleteOwner(owner)">Delete</button></td>
+        <tr *ngFor="let admin of adminDetails">
+          <td>{{admin.id}}</td>
+          <td>{{admin.department}}</td>
+          <td>{{admin.teacher}}</td>
+          <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(admin)">Edit</button></td>
+          <td><button type="button" class="btn btn-danger" (click)="deleteAdmin(admin)">Delete</button></td>
         </tr>
       </tbody>
     </table>
@@ -63,31 +63,31 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Update Owner</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Update Admin</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form #updateForm="ngForm" (ngSubmit)="updateOwner()">
-            <h4 class="display-6 text-center py-2">Update Shop Owner</h4>
+          <form #updateForm="ngForm" (ngSubmit)="updateAdmin()">
+            <h4 class="display-6 text-center py-2">Update Admin</h4>
             
             <div class="">
-              <label for="ownername">Name</label>
+              <label for="department">Department</label>
               <div class="">
-                <input id="ownername" required #ownername="ngModel" [(ngModel)]="ownerToUpdate.ownername" name="ownername" type="text"
-                  class="form-control" placeholder="Enter your name">
-                <div *ngIf="ownername.invalid && ownername.touched">
-                  <small class="text-danger" *ngIf="ownername.errors?.['required']">Required</small>
+                <input id="department" required #department="ngModel" [(ngModel)]="adminToUpdate.department" name="department" type="text"
+                  class="form-control" placeholder="Enter your department">
+                <div *ngIf="department.invalid && department.touched">
+                  <small class="text-danger" *ngIf="department.errors?.['required']">Required</small>
                 </div>
               </div>
             </div><br>
             
             <div class="">
-              <label for="address">Address</label>
+              <label for="teacher">Teacher</label>
               <div class="">
-                <input id="address" required #address="ngModel" [(ngModel)]="ownerToUpdate.address" name="address" type="text"
-                  class="form-control" placeholder="Enter your address">
-                <div *ngIf="address.invalid && address.touched">
-                  <small class="text-danger" *ngIf="address.errors?.['required']">Required</small>
+                <input id="teacher" required #teacher="ngModel" [(ngModel)]="adminToUpdate.teacher" name="teacher" type="text"
+                  class="form-control" placeholder="Enter your teacher">
+                <div *ngIf="teacher.invalid && teacher.touched">
+                  <small class="text-danger" *ngIf="teacher.errors?.['required']">Required</small>
                 </div>
               </div>
             </div><br>

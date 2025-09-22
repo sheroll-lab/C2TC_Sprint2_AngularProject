@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { OwnerService } from './owner.service';
+import { AdminService } from './admin.service';
 
 @Component({
   selector: 'app-root',
@@ -8,18 +8,18 @@ import { OwnerService } from './owner.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'owner-module';
+  title = 'admin-module';
 
-  constructor(private ownerService: OwnerService) {
-    this.getOwnerDetails();
+  constructor(private adminService: AdminService) {
+    this.getAdminDetails();
   }
 
   register(registerForm: NgForm) {
-    this.ownerService.registerOwner(registerForm.value).subscribe(
+    this.adminService.registerAdmin(registerForm.value).subscribe(
       (resp: any) => {
         console.log(resp);
         registerForm.reset();
-        this.getOwnerDetails();
+        this.getAdminDetails();
       },
       (err: any) => {
         console.log(err);
@@ -27,11 +27,11 @@ export class AppComponent {
     );
   }
 
-  getOwnerDetails() {
-    this.ownerService.getOwners().subscribe(
+  getAdminDetails() {
+    this.adminService.getAdmins().subscribe(
       (resp) => {
         console.log(resp);
-        this.ownerDetails = resp;
+        this.adminDetails = resp;
       },
       (err) => {
         console.log(err);
@@ -39,13 +39,13 @@ export class AppComponent {
     );
   }
 
-  ownerDetails = null as any;
+  adminDetails = null as any;
 
-  deleteOwner(owner: any) {
-    this.ownerService.deleteOwner(owner.ownerid).subscribe(
+  deleteAdmin(admin: any) {
+    this.adminService.deleteAdmin(admin.id).subscribe(
       (resp) => {
         console.log(resp);
-        this.getOwnerDetails();
+        this.getAdminDetails();
       },
       (err) => {
         console.log(err);
@@ -53,21 +53,21 @@ export class AppComponent {
     );
   }
 
-  ownerToUpdate = {
-    ownerid: null as any,
-    ownername: "",
-    address: ""
+  adminToUpdate = {
+    id: null as any,
+    department: "",
+    teacher: ""
   };
 
-  edit(owner: any) {
-    this.ownerToUpdate = { ...owner };
+  edit(admin: any) {
+    this.adminToUpdate = { ...admin };
   }
 
-  updateOwner() {
-    this.ownerService.updateOwner(this.ownerToUpdate).subscribe(
+  updateAdmin() {
+    this.adminService.updateAdmin(this.adminToUpdate).subscribe(
       (resp) => {
         console.log(resp);
-        this.getOwnerDetails();
+        this.getAdminDetails();
       },
       (err) => {
         console.log(err);
